@@ -12,6 +12,4 @@ It use:
 * Compojure
 * clj-webdriver
 
-## License
-
-Copyright Â© 2013 Scott Willson
+Copyright © 2013 Scott Willson
