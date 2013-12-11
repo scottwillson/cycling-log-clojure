@@ -1,0 +1,11 @@
+.DS_Store
+.lein-failures
+.lein-repl-history
+.ruby-gemset
+.ruby-version
+/.env
+/.lein-*
+/pom.xml
+/target
+dump
+target
