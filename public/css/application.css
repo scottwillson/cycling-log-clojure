@@ -1,0 +1,16 @@
+h1 {
+  text-align: center;
+}
+
+td.date, th.date {
+  text-align: right;
+  white-space: nowrap;
+}
+
+td.distance, th.distance, td.minutes, th.minutes {
+  text-align: right;
+}
+
+td.name {
+  white-space: nowrap;
+}
