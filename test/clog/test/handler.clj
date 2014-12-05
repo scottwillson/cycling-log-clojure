@@ -17,9 +17,3 @@
   (testing "show workout"
     (let [response (app (request :get "/1"))]
       (is (= (:status response 200)))))
-
-;(deftest test-workouts
-;  (testing "search"
-;    (let [results (workouts "tabor")]
-;`      (is (= ([] results))))))
-

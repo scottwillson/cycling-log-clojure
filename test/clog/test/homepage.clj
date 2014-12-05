@@ -1,7 +1,6 @@
 (ns clog.test.homepage
   (:use clojure.test
         clj-webdriver.taxi
-        clog.environments.test
         [ring.adapter.jetty :only [run-jetty]]
         [monger.core :only [connect get-db]]
         [monger.collection :only [insert insert-batch]])
@@ -13,7 +12,7 @@
 (deftest ^:browser home-page
   (testing "home page search"
     (let [conn (connect)
-          db   (get-db conn db-name)]
+          db   (get-db conn "cycling-log-test")]
     (monger.collection/remove db "workouts")
     (insert db "workouts" { :_id (ObjectId.) :date "2009-07-22" :public_notes "Raced Tabor again" })
     (to "http://localhost:3333/")

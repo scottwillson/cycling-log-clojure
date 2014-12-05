@@ -2,24 +2,18 @@
   (:use monger.operators)
   (:use monger.query)
   (:use clog.logging)
-  (:use clog.environments.development)
   (:refer-clojure :exclude [sort find])
   (:require [cheshire.core :refer :all])
   (:require [monger.core :as mg]
-            [monger.collection :as mc])
-  (:import [com.mongodb MongoOptions ServerAddress]))
+            [monger.collection :as mc]))
 
-(defn workouts [query]
-  (let [conn (mg/connect)
-        db   (mg/get-db conn db-name)]
+(defn workouts [db query]
     (if (nil? query) []
       (with-collection db "workouts"
         (sort (sorted-map :date -1))
         (find {:public_notes {$regex (str ".*" query ".*") $options "i"}})
-        (limit 100)))))
+        (limit 100))))
 
-(defn workout [id]
+(defn workout [db id]
   (println "find workout " id)
-  (let [conn (mg/connect)
-        db   (mg/get-db conn db-name)]
-      (mc/find-one-as-map db "workouts" {:id (read-string id)})))
+      (mc/find-one-as-map db "workouts" {:id (read-string id)}))
