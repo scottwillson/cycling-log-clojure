@@ -1,7 +1,6 @@
 (ns clog.test.handler
   (:use clojure.test
         ring.mock.request
-        clog.environments.test
         clog.handler))
 
 (deftest test-app
