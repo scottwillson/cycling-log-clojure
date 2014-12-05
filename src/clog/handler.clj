@@ -14,24 +14,24 @@
             [monger.collection :as mc]
             [compojure.handler :as handler]
             [compojure.route :as route]
-            [clog.views.home :as views/home]
-            [clog.views.show :as views/show])
+            [clog.views.home :as home]
+            [clog.views.show :as show])
   (:import [com.mongodb MongoOptions ServerAddress]))
 
 (defn json-response [data & [status]]
     {:status (or status 200)
-        :headers {"Content-Type" "application/json"} 
+        :headers {"Content-Type" "application/json"}
         :body (generate-string data)})
 
 (defn workouts-json [query]
   (json-response (
     map (fn [x] {
       :id (get x :id)
-      :date (get x :date) 
-      :activity (get x :activity) 
-      :distance (get x :distance) 
-      :minutes (get x :minutes) 
-      :name(get x :name) 
+      :date (get x :date)
+      :activity (get x :activity)
+      :distance (get x :distance)
+      :minutes (get x :minutes)
+      :name(get x :name)
       :public_notes (get x :public_notes)
       :notes (get x :notes)
     }) (workouts query))))
@@ -42,10 +42,10 @@
 
 
 (defroutes app-routes
-  (GET "/" [] views/home/show-html)
+  (GET "/" [] home/show-html)
   (GET "/workouts.json" [query] (workouts-json query))
   (GET ["/workouts/:id.json", :id #"[0-9]+"] [id] (println "workouts#show.json" id) (workout-json id))
-  (GET ["/workouts/:id", :id #"[0-9]+"] [id] (views/show/show-html (workout id)))
+  (GET ["/workouts/:id", :id #"[0-9]+"] [id] (show/show-html (workout id)))
   (route/files "/")
   (route/not-found "Not Found"))
 
