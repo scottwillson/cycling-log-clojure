@@ -4,8 +4,8 @@ require "mysql2"
 mysql = Mysql2::Client.new(:host => "localhost", :username => "root", :database => "cycling_log")
 
 require "mongo"
-mongo  = Mongo::MongoClient.new('localhost', 3002)
-db     = mongo['meteor']
+mongo  = Mongo::MongoClient.new #('localhost', 3002)
+db     = mongo['cycling-log']
 
 coll   = db['workouts']
 coll.remove
@@ -20,11 +20,11 @@ mysql.query(
   putc "."
   coll.insert({
     id: r["id"],
-    date: r["date"].to_s, 
+    date: r["date"].to_s,
     user_id: r["userId"],
-    activity: r["activity"], 
-    distance: r["distance"], 
-    minutes: r["duration"], 
+    activity: r["activity"],
+    distance: r["distance"],
+    minutes: r["duration"],
     first_name: r["firstName"],
     last_name: r["lastName"],
     name: "#{r["firstName"]} #{r["lastName"]}".strip,

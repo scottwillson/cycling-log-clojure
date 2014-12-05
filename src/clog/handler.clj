@@ -26,14 +26,14 @@
 (defn workouts-json [query]
   (json-response (
     map (fn [x] {
-      :id (get x :id)
-      :date (get x :date)
-      :activity (get x :activity)
-      :distance (get x :distance)
-      :minutes (get x :minutes)
-      :name(get x :name)
+      :id           (get x :id)
+      :date         (get x :date)
+      :activity     (get x :activity)
+      :distance     (get x :distance)
+      :minutes      (get x :minutes)
+      :name         (get x :name)
       :public_notes (get x :public_notes)
-      :notes (get x :notes)
+      :notes        (get x :notes)
     }) (workouts query))))
 
 (defn workout-json [id]
