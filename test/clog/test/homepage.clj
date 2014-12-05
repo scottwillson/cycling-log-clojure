@@ -30,7 +30,7 @@
 
 (defn ^:browser start-browser-fixture
   [f]
-  (set-driver! {:browser :firefox})
+  (set-driver! {:browser :phantomjs})
   (f))
 
 (defn ^:browser quit-browser-fixture
